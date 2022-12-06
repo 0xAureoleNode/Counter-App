@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 class Counter extends Component {
   state = {
     count: 0,
+    tags: [],
   };
+
 
   // constructor() {
   //   super();
@@ -27,17 +29,27 @@ class Counter extends Component {
           Increment
         </button>
       </>
+=======
+  renderTags() {
+    return this.state.tags.length === 0 ? (
+      <p>There are not tags</p>
+    ) : (
+      <ul>
+        {this.state.tags.map((tag) => (
+          <li key={tag}>{tag}</li>
+        ))}
+      </ul>
     );
   }
-  getBadgeClasses() {
-    let classes = 'badge m-2 badge-';
-    classes += this.state.count === 0 ? 'primary' : 'warning';
-    return classes;
-  }
 
-  formatCount() {
-    const { count } = this.state;
-    return count === 0 ? 'zero' : count;
+  render() {
+    return (
+      <div>
+        {this.state.tags.length === 0 && 'plz write some tags'}
+        {this.renderTags()}
+      </div>
+
+    );
   }
 }
 
