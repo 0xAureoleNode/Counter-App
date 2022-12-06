@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 
-class Counter extends Component {
+export default class Counter extends Component {
   state = {
     count: 0,
     tags: [],
   };
-
-
-  // constructor() {
-  //   super();
-  //   this.handleIncrement = this.handleIncrement.bind(this);
-  // }
 
   handleIncrement = () => {
     this.setState((state) => ({
@@ -29,28 +23,16 @@ class Counter extends Component {
           Increment
         </button>
       </>
-=======
-  renderTags() {
-    return this.state.tags.length === 0 ? (
-      <p>There are not tags</p>
-    ) : (
-      <ul>
-        {this.state.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
     );
   }
+  getBadgeClasses() {
+    let classes = 'badge m-2 badge-';
+    classes += this.state.count === 0 ? 'primary' : 'warning';
+    return classes;
+  }
 
-  render() {
-    return (
-      <div>
-        {this.state.tags.length === 0 && 'plz write some tags'}
-        {this.renderTags()}
-      </div>
-
-    );
+  formatCount() {
+    const { count } = this.state;
+    return count === 0 ? 'zero' : count;
   }
 }
-
-export default Counter;
